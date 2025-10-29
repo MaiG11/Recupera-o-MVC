@@ -4,10 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MediaescolarApplication {
+public class AlunoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MediaescolarApplication.class, args);
+		SpringApplication.run(AlunoApplication.class, args);
+		System.out.println("Aplicação Media Escolar iniciada com sucesso!");
+		System.out.println("Acesse: http://localhost:8080");
+	}
 	}
 
-}
+
