@@ -1,38 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Média Escolar</title>
+
+    <!-- Ligação com o CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
 <body>
-    <h1>Media Escolar</h1>
+    <!-- Container central -->
+    <div class="container">
 
-    <h2>Adicionar Aluno</h2>
-    <form th:action="@{/adicionar}" th:object="${novoAluno}" method="post">
-        <label>Nome:</label>
-        <input type="text" th:field="*{nome}" required><br>
-        <label>Idade:</label>
-        <input type="number" th:field="*{idade}" required><br>
-        <label>Turma:</label>
-        <input type="text" th:field="*{turma}" required><br>
-        <label>Nota 1:</label>
-        <input type="number" step="0.1" th:field="*{nota1}" required><br>
-        <label>Nota 2:</label>
-        <input type="number" step="0.1" th:field="*{nota2}" required><br>
-        <button type="submit">Adicionar</button>
-    </form>
+        <!-- Cabeçalho -->
+        <header>
+            <h1>📘 Média Escolar</h1>
+        </header>
 
-    <h2>Lista de Alunos</h2>
-    <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Turma</th>
-            <th>Nota 1</th>
-            <th>Nota 2</th>
-            <th>Média</th>
-        </tr>
-        <tr th:each="aluno : ${paginaAlunos}">
-            <td th:text="${aluno.nome}"></td>
-            <td th:text="${aluno.idade}"></td>
-            <td th:text="${aluno.turma}"></td>
-            <td th:text="${aluno.nota1}"></td>
-            <td th:text="${aluno.nota2}"></td>
-            <td th:text="${aluno.calcularMedia()}"></td>
-        </tr>
-    </table>
+        <!-- Formulário para adicionar aluno -->
+        <form th:action="@{/adicionar}" th:object="${novoAluno}" method="post">
+            <h2>Adicionar Aluno</h2>
+
+            <label>Nome:</label>
+            <input type="text" th:field="*{nome}" required>
+
+            <label>Idade:</label>
+            <input type="number" th:field="*{idade}" required>
+
+            <label>Turma:</label>
+            <input type="text" th:field="*{turma}" required>
+
+            <label>Nota 1:</label>
+            <input type="number" step="0.1" th:field="*{nota1}" required>
+
+            <label>Nota 2:</label>
+            <input type="number" step="0.1" th:field="*{nota2}" required>
+
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <!-- Tabela de alunos -->
+        <h2>Lista de Alunos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Turma</th>
+                    <th>Nota 1</th>
+                    <th>Nota 2</th>
+                    <th>Média</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="aluno : ${paginaAlunos}">
+                    <td th:text="${aluno.nome}">Nome</td>
+                    <td th:text="${aluno.idade}">Idade</td>
+                    <td th:text="${aluno.turma}">Turma</td>
+                    <td th:text="${aluno.nota1}">Nota 1</td>
+                    <td th:text="${aluno.nota2}">Nota 2</td>
+                    <td th:text="${aluno.calcularMedia()}">Média</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>© 2025 Media Escolar | Desenvolvido por Maira 💙</p>
+        </footer>
+    </div>
 </body>
+</html>
+
