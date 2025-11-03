@@ -1,84 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Média Escolar</title>
+    <meta charset="UTF-8"/> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Faz a página ficar responsiva em celulares -->
+    <title>Média Escolar</title> <!-- Título da página que aparece na aba do navegador -->
 
-    <!-- Ligação com o CSS -->
+    <!-- Liga o CSS para estilizar a página -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
-    <div class="container">
+    <div class="container"> <!-- Caixa principal que centraliza todo o conteúdo -->
 
-        <header>
-            <h1>📘 Média Escolar</h1>
+        <header> <!-- Cabeçalho da página -->
+            <h1>📘 Média Escolar</h1> <!-- Título visível no topo -->
         </header>
 
-        <!-- Exibir mensagem de erro, se houver -->
+        <!-- Caixa para mostrar mensagem de erro, aparece só se houver erro -->
         <div th:if="${erro}" style="color:red; margin-bottom:10px;">
-            <p th:text="${erro}"></p>
+            <p th:text="${erro}"></p> <!-- Mostra o texto do erro -->
         </div>
 
-        <!-- Formulário para adicionar aluno -->
+        <!-- Formulário para adicionar um novo aluno -->
         <form th:action="@{/adicionar}" th:object="${novoAluno}" method="post">
-            <h2>Adicionar Aluno</h2>
+            <h2>Adicionar Aluno</h2> <!-- Subtítulo do formulário -->
 
             <label>Nome:</label>
-            <input type="text" th:field="*{nome}" required>
+            <input type="text" th:field="*{nome}" required> <!-- Campo para o nome do aluno -->
 
             <label>Idade:</label>
-            <input type="number" th:field="*{idade}" required>
+            <input type="number" th:field="*{idade}" required> <!-- Campo para a idade do aluno -->
 
             <label>Turma:</label>
-            <input type="text" th:field="*{turma}" required>
+            <input type="text" th:field="*{turma}" required> <!-- Campo para a turma -->
 
             <label>Nota 1:</label>
-            <input type="number" step="0.1" th:field="*{nota1}" required>
+            <input type="number" step="0.1" th:field="*{nota1}" required> <!-- Campo para a primeira nota -->
 
             <label>Nota 2:</label>
-            <input type="number" step="0.1" th:field="*{nota2}" required>
+            <input type="number" step="0.1" th:field="*{nota2}" required> <!-- Campo para a segunda nota -->
 
-            <button type="submit">Adicionar</button>
+            <button type="submit">Adicionar</button> <!-- Botão para enviar o formulário -->
         </form>
 
-        <!-- Tabela de alunos -->
-        <h2>Lista de Alunos</h2>
+        <!-- Tabela que mostra todos os alunos cadastrados -->
+        <h2>Lista de Alunos</h2> <!-- Subtítulo da tabela -->
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Turma</th>
-                    <th>Nota 1</th>
-                    <th>Nota 2</th>
-                    <th>Média</th>
-                    <th>Ações</th> <!-- Nova coluna para Editar/Excluir -->
+                    <th>Nome</th> <!-- Coluna do nome -->
+                    <th>Idade</th> <!-- Coluna da idade -->
+                    <th>Turma</th> <!-- Coluna da turma -->
+                    <th>Nota 1</th> <!-- Coluna da primeira nota -->
+                    <th>Nota 2</th> <!-- Coluna da segunda nota -->
+                    <th>Média</th> <!-- Coluna da média das notas -->
+                    <th>Ações</th> <!-- Coluna com botões de editar e excluir -->
                 </tr>
             </thead>
             <tbody>
+                <!-- Para cada aluno da lista, cria uma linha na tabela -->
                 <tr th:each="aluno : ${paginaAlunos}">
-                    <td th:text="${aluno.nome}">Nome</td>
-                    <td th:text="${aluno.idade}">Idade</td>
-                    <td th:text="${aluno.turma}">Turma</td>
-                    <td th:text="${aluno.nota1}">Nota 1</td>
-                    <td th:text="${aluno.nota2}">Nota 2</td>
-                    <td th:text="${aluno.calcularMedia()}">Média</td>
+                    <td th:text="${aluno.nome}">Nome</td> <!-- Mostra o nome -->
+                    <td th:text="${aluno.idade}">Idade</td> <!-- Mostra a idade -->
+                    <td th:text="${aluno.turma}">Turma</td> <!-- Mostra a turma -->
+                    <td th:text="${aluno.nota1}">Nota 1</td> <!-- Mostra a primeira nota -->
+                    <td th:text="${aluno.nota2}">Nota 2</td> <!-- Mostra a segunda nota -->
+                    <td th:text="${aluno.calcularMedia()}">Média</td> <!-- Mostra a média calculada -->
                     <td>
-                        <!-- Botões Editar e Excluir -->
-                        <a th:href="@{'/editar?id=' + ${aluno.id}}">✏️ Editar</a> |
-                        <a th:href="@{'/excluir?id=' + ${aluno.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️ Excluir</a>
+                        <!-- Botões para Editar e Excluir aluno -->
+                        <a th:href="@{'/editar?id=' + ${aluno.id}}">✏️ Editar</a> | <!-- Vai para a página de edição -->
+                        <a th:href="@{'/excluir?id=' + ${aluno.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️ Excluir</a> <!-- Exclui o aluno após confirmação -->
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <footer>
-            <p>© 2025 Media Escolar | Desenvolvido por Maira 💙</p>
+        <footer> <!-- Rodapé da página -->
+            <p>© 2025 Media Escolar | Desenvolvido por Maira 💙</p> <!-- Texto do rodapé -->
         </footer>
     </div>
 </body>
 </html>
-
 

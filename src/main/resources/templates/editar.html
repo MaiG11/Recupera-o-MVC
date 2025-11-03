@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Editar Aluno</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8"/> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Faz a página ser responsiva em celulares -->
+    <title>Editar Aluno</title> <!-- Título que aparece na aba do navegador -->
+    <link rel="stylesheet" th:href="@{/css/style.css}"> <!-- Liga o arquivo CSS para deixar a página estilizada -->
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>✏️ Editar Aluno</h1>
+    <div class="container"> <!-- Caixa principal que centraliza o conteúdo -->
+
+        <header> <!-- Cabeçalho da página -->
+            <h1>✏️ Editar Aluno</h1> <!-- Título principal visível na página -->
         </header>
 
+        <!-- Mensagem de erro, aparece se houver algo errado no formulário -->
         <div th:if="${erro}" style="color:red; margin-bottom:10px;">
-            <p th:text="${erro}"></p>
+            <p th:text="${erro}"></p> <!-- Mostra o texto do erro -->
         </div>
 
+        <!-- Formulário para editar o aluno -->
         <form th:action="@{/editar}" th:object="${alunoParaEditar}" method="post">
-            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{id}"> <!-- Guarda o ID do aluno para saber qual editar -->
+
             <label>Nome:</label>
-            <input type="text" th:field="*{nome}" required>
+            <input type="text" th:field="*{nome}" required> <!-- Campo para o nome do aluno -->
 
             <label>Idade:</label>
-            <input type="number" th:field="*{idade}" required>
+            <input type="number" th:field="*{idade}" required> <!-- Campo para a idade do aluno -->
 
             <label>Turma:</label>
-            <input type="text" th:field="*{turma}" required>
+            <input type="text" th:field="*{turma}" required> <!-- Campo para a turma do aluno -->
 
             <label>Nota 1:</label>
-            <input type="number" step="0.1" th:field="*{nota1}" required>
+            <input type="number" step="0.1" th:field="*{nota1}" required> <!-- Campo para a primeira nota -->
 
             <label>Nota 2:</label>
-            <input type="number" step="0.1" th:field="*{nota2}" required>
+            <input type="number" step="0.1" th:field="*{nota2}" required> <!-- Campo para a segunda nota -->
 
-            <button type="submit">Salvar</button>
-            <a th:href="@{/}" style="margin-left:10px;">Cancelar</a>
+            <button type="submit">Salvar</button> <!-- Botão para enviar o formulário e salvar alterações -->
+            <a th:href="@{/}" style="margin-left:10px;">Cancelar</a> <!-- Link para voltar para a página principal sem salvar -->
         </form>
 
-        <footer>
-            <p>© 2025 Media Escolar | Desenvolvido por Maira 💙</p>
+        <footer> <!-- Rodapé da página -->
+            <p>© 2025 Media Escolar | Desenvolvido por Maira 💙</p> <!-- Texto do rodapé -->
         </footer>
+
     </div>
 </body>
 </html>
