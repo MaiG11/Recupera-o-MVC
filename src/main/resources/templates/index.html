@@ -10,13 +10,16 @@
 </head>
 
 <body>
-    <!-- Container central -->
     <div class="container">
 
-        <!-- Cabeçalho -->
         <header>
             <h1>📘 Média Escolar</h1>
         </header>
+
+        <!-- Exibir mensagem de erro, se houver -->
+        <div th:if="${erro}" style="color:red; margin-bottom:10px;">
+            <p th:text="${erro}"></p>
+        </div>
 
         <!-- Formulário para adicionar aluno -->
         <form th:action="@{/adicionar}" th:object="${novoAluno}" method="post">
@@ -51,6 +54,7 @@
                     <th>Nota 1</th>
                     <th>Nota 2</th>
                     <th>Média</th>
+                    <th>Ações</th> <!-- Nova coluna para Editar/Excluir -->
                 </tr>
             </thead>
             <tbody>
@@ -61,15 +65,20 @@
                     <td th:text="${aluno.nota1}">Nota 1</td>
                     <td th:text="${aluno.nota2}">Nota 2</td>
                     <td th:text="${aluno.calcularMedia()}">Média</td>
+                    <td>
+                        <!-- Botões Editar e Excluir -->
+                        <a th:href="@{'/editar?id=' + ${aluno.id}}">✏️ Editar</a> |
+                        <a th:href="@{'/excluir?id=' + ${aluno.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️ Excluir</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- Rodapé -->
         <footer>
             <p>© 2025 Media Escolar | Desenvolvido por Maira 💙</p>
         </footer>
     </div>
 </body>
 </html>
+
 

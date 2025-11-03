@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Editar Aluno</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✏️ Editar Aluno</h1>
+        </header>
+
+        <div th:if="${erro}" style="color:red; margin-bottom:10px;">
+            <p th:text="${erro}"></p>
+        </div>
+
+        <form th:action="@{/editar}" th:object="${alunoParaEditar}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <label>Nome:</label>
+            <input type="text" th:field="*{nome}" required>
+
+            <label>Idade:</label>
+            <input type="number" th:field="*{idade}" required>
+
+            <label>Turma:</label>
+            <input type="text" th:field="*{turma}" required>
+
+            <label>Nota 1:</label>
+            <input type="number" step="0.1" th:field="*{nota1}" required>
+
+            <label>Nota 2:</label>
+            <input type="number" step="0.1" th:field="*{nota2}" required>
+
+            <button type="submit">Salvar</button>
+            <a th:href="@{/}" style="margin-left:10px;">Cancelar</a>
+        </form>
+
+        <footer>
+            <p>© 2025 Media Escolar | Desenvolvido por Maira 💙</p>
+        </footer>
+    </div>
+</body>
+</html>
